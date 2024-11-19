@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .restaurant-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-title {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h1 id="restaurant-name">Restaurant Name</h1>
+        <img id="restaurant-image" class="restaurant-image" src="" alt="Restaurant Image" />
+        <p id="restaurant-description">Description of the restaurant.</p>
+        <h3>Menu</h3>
+        <div id="menu-items"></div>
+    </div>
+
+    <script>
+        // Fetching restaurant details (replace with actual API call if needed)
+        // This is sample data; in a real application, you would fetch this from your server.
+        const restaurantId = '1'; // Example restaurant ID; you would get this dynamically based on user selection.
+
+        const restaurantData = {
+            "1": {
+                name: "Pasta Palace",
+                description: "Welcome to Pasta Palace, where we serve the finest Italian cuisine.",
+                image: "https://example.com/path-to-your-restaurant-image.jpg",
+                menu: [
+                    { name: "Spaghetti Carbonara", price: 12.99 },
+                    { name: "Margherita Pizza", price: 10.99 },
+                    { name: "Tiramisu", price: 5.99 },
+                    { name: "Lasagna", price: 14.99 }
+                ]
+            },
+            // Add more restaurants as needed
+        };
+
+        // Function to display restaurant details
+        function displayRestaurantDetails(id) {
+            const restaurant = restaurantData[id];
+            if (restaurant) {
+                document.getElementById('restaurant-name').innerText = restaurant.name;
+                document.getElementById('restaurant-description').innerText = restaurant.description;
+                document.getElementById('restaurant-image').src = restaurant.image;
+
+                // Populate menu items
+                const menuList = document.getElementById('menu-items');
+                restaurant.menu.forEach(item => {
+                    const menuItemDiv = document.createElement('div');
+                    menuItemDiv.className = 'menu-item';
+                    menuItemDiv.innerHTML = `<span class="menu-title">${item.name}</span><span>$${item.price.toFixed(2)}</span>`;
+                    menuList.appendChild(menuItemDiv);
+                });
+            } else {
+                document.getElementById('restaurant-name').innerText = "Restaurant not found.";
+            }
+        }
+
+        // Call function to display details for the selected restaurant
+        displayRestaurantDetails(restaurantId);
+    </script>
+</body>
+
+</html>

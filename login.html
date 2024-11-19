@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>FOOD 4 ALL</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    /* Container animations and styling */
+    .card-container {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Login/Signup card styling */
+    .card {
+      border-radius: 10px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Button styling */
+    .btn-primary {
+      background-color: #ff7f50;
+      border: none;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #ff6347;
+    }
+
+    /* Form field styling */
+    .form-control {
+      border-radius: 5px;
+      box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #ff7f50;
+      box-shadow: 0 0 8px rgba(255, 127, 80, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span>FOOD 4 ALL</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Login/Signup Section -->
+    <section class="slider_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <div class="detail-box">
+              <h1>TASTES LIKE HOME</h1>
+              <p>Order more..........Eat more......</p>
+            </div>
+            <div class="container my-5">
+              <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 card-container">
+                  <div class="card p-4 shadow">
+                    <h3 class="text-center mb-4" id="formTitle">Login</h3>
+                    <form id="authForm" onsubmit="return handleLogin(event)">
+                      <div class="form-group">
+                        <label for="inputUsername">Username</label>
+                        <input type="text" class="form-control" id="inputUsername" placeholder="Username" required>
+                      </div>
+                      <div class="form-group" id="passwordField">
+                        <label for="inputPassword">Password</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                      </div>
+                      <div class="form-group d-none" id="confirmPasswordField">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-block mt-3" id="submitButton">Login</button>
+                      <div class="text-center mt-3">
+                        <p id="toggleText">Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a></p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- jQuery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault(); // Prevent the default form submission
+      const username = document.getElementById('inputUsername').value;
+      const password = document.getElementById('inputPassword').value;
+
+      // Check if credentials match
+      if (username === 'user' && password === '123') {
+        window.location.href = 'main.html'; // Redirect to main.html
+      } else {
+        alert('Invalid username or password'); // Alert for invalid credentials
+      }
+    }
+
+    function toggleForm() {
+      const formTitle = document.getElementById('formTitle');
+      const submitButton = document.getElementById('submitButton');
+      const toggleText = document.getElementById('toggleText');
+      const confirmPasswordField = document.getElementById('confirmPasswordField');
+
+      if (formTitle.innerText === 'Login') {
+        formTitle.innerText = 'Sign Up';
+        submitButton.innerText = 'Sign Up';
+        toggleText.innerHTML = 'Already have an account? <a href="#" onclick="toggleForm()">Login</a>';
+        confirmPasswordField.classList.remove('d-none');
+      } else {
+        formTitle.innerText = 'Login';
+        submitButton.innerText = 'Login';
+        toggleText.innerHTML = 'Don\'t have an account? <a href="#" onclick="toggleForm()">Sign Up</a>';
+        confirmPasswordField.classList.add('d-none');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
